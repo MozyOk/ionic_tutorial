@@ -6,11 +6,19 @@ import { Component } from '@angular/core';
 })
 export class HelloIonicPage {
   title: string = 'タスク登録'
+  task: string;
   tasks: {name: string}[] = [
     {name: 'タスク1'},
     {name: 'タスク2'},
   ];
-  constructor() {
+  constructor(){
 
+  }
+
+addTask() {
+  this.tasks.push({
+    name: this.task
+  });
+  this.task = '';
   }
 }
