@@ -7,17 +7,18 @@
 <ion-header>
 
   <ion-navbar>
-    <button ion-button menutoggle>
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>タスク一覧</ion-title>
   </ion-navbar>
+
 </ion-header>
 
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let t of tasks">{{t.name}}</ion-item>
+    <ion-item *ngFor="let t of tasks" (tap)="changeTask()">{{t.name}}</ion-item>
   </ion-list>
 
 </ion-content>
