@@ -48,7 +48,7 @@ export class TaskListPage {
         }, {
           text: '変更',
           handler: () => {
-            this._renameTask(index, 1);
+            this._renameTask(index); //TODO: 書籍だと、 数字指定が抜けている?
           }
         }, {
           text: '閉じる',
@@ -62,7 +62,7 @@ export class TaskListPage {
     actionSheet.present();
   }
 
-  _renameTask(index, number){
+  _renameTask(index: number){
     let prompt = this.alertcCtrl.create({
       title: '変更後のタスク',
       inputs: [
