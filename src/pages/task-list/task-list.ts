@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the TaskListPage page.
@@ -22,7 +22,9 @@ export class TaskListPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public actionSheetCtrl: ActionSheetController) {
+    public actionSheetCtrl: ActionSheetController,
+    public alertcCtrl: AlertController,  
+  ) {
   }
 
   ionViewWillEnter() {
@@ -46,7 +48,7 @@ export class TaskListPage {
         }, {
           text: '変更',
           handler: () => {
-            console.log('Archive clicked');
+            this._renameTask(index, 1);
           }
         }, {
           text: '閉じる',
@@ -58,6 +60,34 @@ export class TaskListPage {
       ]
     });
     actionSheet.present();
+  }
+
+  _renameTask(index, number){
+    let prompt = this.alertcCtrl.create({
+      title: '変更後のタスク',
+      inputs: [
+        {
+          name: 'task',
+          placeholder: 'タスク',
+          value: this.tasks[index].name
+        },
+      ],
+      buttons: [
+        {
+          text: '閉じる'
+        },
+        {
+          text: '保存',
+          handler: data => {
+            // タスクのindex番目を書き換え
+            this.tasks[index] = {name:data.task};
+            //LocalStorageに保存する
+            localStorage.setItem('tasks', JSON.stringify(this.tasks));
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 
 }
