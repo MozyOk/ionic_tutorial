@@ -48,7 +48,7 @@ export class TaskListPage {
         }, {
           text: '変更',
           handler: () => {
-            this._renameTask(index); //TODO: 書籍だと、 数字指定が抜けている?
+            this._renameTask(index);
           }
         }, {
           text: '閉じる',
